@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Adventure Park Terminal</title>
+
+    <style>
+        body {
+            background-color: #0b2516;
+            color: #e8f5e9;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        .content-cardqwerty {
+            background-color: #113f26;
+            border: 2px solid #14532d;
+            border-radius: 8px;
+            padding: 2px;
+            margin-right: 1px;
+            margin-top: 20px;
+        }
+
+        .content-card {
+            background-color: #113f26;
+            border: 2px solid #14532d;
+            border-radius: 8px;
+            padding: 2px;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #a3e635;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .qwertyuiop1 {
+            border: 2px solid gold;
+            border-radius: 3px;
+        }
+
+        .qwertyuiop2 {
+            border: 2px solid white;
+            border-radius: 3px;
+        }
+
+        .qwertyuiop3 {
+            border: 2px solid darkgoldenrod;
+            border-radius: 3px;
+        }
+
+        abbr {
+            color: yellow;
+            text-decoration: none;
+        }
+
+        dt {
+            color: #f97316;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        dd {
+            color: #cbd5e1;
+            margin-left: 20px;
+        }
+
+        code {
+            color: lightskyblue;
+        }
+
+        pre {
+            background-color: #000000;
+            width: fit-content;
+            color: #4ade80;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #14532d;
+        }
+
+        blockquote {
+            background-color: #14532d;
+            border-left: 5px solid #a3e635;
+            padding: 15px;
+            margin-left: 0px;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header class="my-4">
+            <h1 class="text-warning display-1">Adventure Park Terminal</h1>
+            <p class="text-light display-4">Simple real-time interface tracking park statuses and schedules.</p>
+        </header>
+
+        <main>
+            <div class="row">
+                <div class="col-12 content-card">
+                    <h2 class="display-2">Info</h2>
+                    <p>We are recognised by many international organizations like <abbr
+                            title="World Health Organization">WHO</abbr> and <abbr
+                            title="International Association of Amusement Parks and Attractions">IAAPA</abbr>.
+                    </p>
+                </div>
+
+                <div class="col-12 content-cardqwerty">
+                    <h2 class="display-2">System Control</h2>
+                    <p>Operators deploy technical coaster tasks manually via backend scripts:</p>
+
+                    <code>LAUNCH_COASTER<br>
+                        EMERGENCY_BRAKES<br>
+                        RESET_HYDRAULICS</code>
+                </div>
+
+                <div class="col-12 content-card">
+                    <h2 class="display-2">Live Matrix Schedule</h2>
+                    <pre>
+09:00 AM - Canopy Walk  [Easy]
+11:30 AM - Sky Trek     [Medium]
+02:00 PM - Rapid Rush   [Hard]
+04:30 PM - Extreme Drop [Insane]</pre>
+                </div>
+
+                <div class="col-12 content-cardqwerty">
+                    <h2 class="display-2">Ride Dictionary</h2>
+
+                    <dl>
+                        <dt>The Cyclone</dt>
+                        <dd>High-speed roller coaster featuring extreme layout track angles.</dd>
+
+                        <dt>Giga Swing</dt>
+                        <dd>A heavy mechanical pendulum structure spinning at high speeds.</dd>
+
+                        <dt>Hydra Splash</dt>
+                        <dd>Water canyon track design built with steep drops.</dd>
+                    </dl>
+                </div>
+
+                <div class="col-12 content-card">
+                    <h2 class="display-2">Gate Clearances</h2>
+
+                    <div class="p-2 my-2 bg-dark qwertyuiop1">Zipline Zone &rarr;
+                        Requires Gold Pass</div>
+                    <div class="p-2 my-2 bg-dark qwertyuiop2">Climbing Wall &rarr; Requires
+                        Silver Pass</div>
+                    <div class="p-2 my-2 bg-dark qwertyuiop3">Kids Fun Arena &rarr;
+                        Requires Bronze Pass</div>
+                </div>
+
+            </div>
+
+
+        </main>
+
+        <div class="col-12 content-card">
+            <footer>
+                <h2 class="display-2">Quote</h2>
+                <blockquote>
+                    <p class="text-white qwerty">"Only those who will risk going too far can possibly find out how far
+                        one can go."</p>
+                    <p class="text-white qwerty">T.S. Eliot
+                </blockquote>
+            </footer>
+        </div>
+
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+
+</body>
+
+</html>

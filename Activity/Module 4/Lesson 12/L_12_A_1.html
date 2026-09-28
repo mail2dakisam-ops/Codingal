@@ -1,0 +1,1003 @@
+<!--<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Zoo Rescue Tracker — Dashboard</title>
+    <style>
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            /* Pure clean white canvas background */
+            color: #2d3748;
+            /* Slate charcoal premium typography color */
+            padding-top: 50px;
+            /* Creates safe breathing room for the fixed top banner */
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .tracker-wrapper {
+            max-width: 640px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* =============================================================
+           ASSIGNMENT POSITIONING COMPLIANCE & REFINED MINIMALIST STYLING
+           ============================================================= */
+
+        /* [Condition 1] The green rescue alert stays fixed at the top of the page */
+        .fixed-alert-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #111827;
+            /* Sophisticated stark dark off-black background */
+            color: #10b981;
+            /* Minimalist vibrant safety mint green accent text */
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 12px 20px;
+            z-index: 9999;
+            border-bottom: 1px solid #1f2937;
+        }
+
+        /* [Condition 5] The rescue zone label sticks near the top while scrolling */
+        .rescue-zone-label {
+            position: sticky;
+            top: 41px;
+            /* Perfectly aligns right flush underneath the dark top banner */
+            background-color: rgba(255, 255, 255, 0.95);
+            /* Crisp glass-morphism effect overlay */
+            backdrop-filter: blur(8px);
+            color: #111827;
+            padding: 20px 0;
+            margin: 20px 0 30px 0;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            border-bottom: 1px solid #edf2f7;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .zone-counter {
+            font-size: 12px;
+            font-weight: 500;
+            color: #718096;
+            background-color: #f7fafc;
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* [Condition 2] The static animal entries appear one below another */
+        .static-animal-entry {
+            position: static;
+            background-color: #ffffff;
+            border: 1px solid #edf2f7;
+            /* Very fine crisp neutral perimeter line */
+            padding: 24px;
+            margin-bottom: 24px;
+            border-radius: 8px;
+            transition: border-color 0.2s ease;
+        }
+
+        .static-animal-entry:hover {
+            border-color: #cbd5e0;
+            /* Subtle highlight indicator shift on hover */
+        }
+
+        .static-animal-entry h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+
+        .static-animal-entry p {
+            color: #4a5568;
+            font-size: 14.5px;
+        }
+
+        .card-meta-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #718096;
+            border-top: 1px solid #f7fafc;
+            padding-top: 12px;
+        }
+
+        .card-meta-row span strong {
+            color: #4a5568;
+        }
+
+        /* [Condition 3] The Rescued Koala entry shifts slightly to the right */
+        .relative-koala-entry {
+            position: relative;
+            left: 35px;
+            /* Precision mechanical layout push shifting card away from left boundary */
+            background-color: #fafbfc;
+            /* Subtly distinct background to note positioning shift */
+            border-color: #cbd5e0;
+        }
+
+        /* Relative container base definition needed to anchor local absolute layouts safely */
+        .panda-card-container {
+            position: relative;
+        }
+
+        /* [Condition 4] The SAFE tag appears on the top-right corner of the panda card */
+        .absolute-safe-tag {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background-color: #e6fffa;
+            /* Soft micro pastel safe background */
+            color: #0d9488;
+            /* Bold, clean medical green indicator text */
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid #b2f5ea;
+        }
+
+        /* [Condition 6] Technical Explanation Block Styling Layout */
+        .explanation-card {
+            background-color: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 48px;
+        }
+
+        .explanation-card h4 {
+            color: #111827;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .explanation-card p {
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 16px;
+        }
+
+        .mechanic-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mechanic-item {
+            font-size: 13.5px;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+
+        .mechanic-item code {
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            background-color: #edf2f7;
+            color: #1a202c;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .mechanic-item strong {
+            color: #2d3748;
+        }
+
+        /* Interactive Viewport Testing Area */
+        .scroll-buffer-field {
+            height: 400px;
+            margin-top: 40px;
+            border: 1px dashed #e2e8f0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #a0aec0;
+            font-size: 13px;
+            background: linear-gradient(to bottom, #ffffff, #fafbfc);
+        }
+    </style>
+</head>
+
+<body>
+
+     [Condition 1] Fixed Stark Top Alert Bar with Green Status Text Accent 
+    <div class="fixed-alert-bar">
+        ● LIVE MONITORING: Active Medical Escorts and Field Rescues Tracking Node Online
+    </div>
+
+    <div class="tracker-wrapper">
+
+         [Condition 5] Sticky Header Element Component 
+        <h2 class="rescue-zone-label">
+            <span>Woodland Sector Overview</span>
+            <span class="zone-counter">3 ACTIVE INCIDENTS</span>
+        </h2>
+
+         [Condition 2] Normal Standard Static Flow Entry 
+        <div class="static-animal-entry">
+            <h3>Red Kangaroo</h3>
+            <p>Individual shows typical activity metrics. Standard enclosure boundaries remain mapped and verified.</p>
+            <div class="card-meta-row">
+                <span><strong>ID:</strong> RK-901</span>
+                <span><strong>Status:</strong> Nominal</span>
+                <span><strong>Sector:</strong> Savannah-A</span>
+            </div>
+        </div>
+
+         [Condition 3] Relative Entry: Shifted beautifully to the right via layout coordinates 
+        <div class="static-animal-entry relative-koala-entry">
+            <h3>Rescued Koala</h3>
+            <p>Assigned safely into the primary observation suite. Element offset intentionally using relative
+                properties for visual isolation priority.</p>
+            <div class="card-meta-row">
+                <span><strong>ID:</strong> KK-402</span>
+                <span><strong>Status:</strong> Under Care</span>
+                <span><strong>Sector:</strong> Medical Nursery</span>
+            </div>
+        </div>
+
+         [Condition 4] Parent Relative Container holding Top-Right Absolute Pill Card Badge 
+        <div class="static-animal-entry panda-card-container">
+            <h3>Giant Panda</h3>
+            <p>Nutritional logistics balanced. Dietary intake values and indoor humidity levels conform perfectly to
+                parameters.</p>
+            <div class="card-meta-row">
+                <span><strong>ID:</strong> GP-311</span>
+                <span><strong>Status:</strong> Stabilized</span>
+                <span><strong>Sector:</strong> Bamboo Forest</span>
+            </div>
+
+             Absolute Child Element inside Relative Parent Container 
+            <span class="absolute-safe-tag">SAFE</span>
+        </div>
+
+         [Condition 6] Technical Explanation Elements Document Layout Section 
+        <section class="explanation-card">
+            <h4>Placement Properties Mechanics: top, right, bottom, left</h4>
+            <p>CSS directional properties update coordinate states selectively based on the position rules applied:</p>
+
+            <ul class="mechanic-list">
+                <li class="mechanic-item">
+                    <strong>Relative Flow Mechanics:</strong> Applies local layout padding changes relative to its
+                    structural home anchor. <code>left: 35px;</code> systematically shifts the Koala box rightward away
+                    from its normal perimeter.
+                </li>
+                <li class="mechanic-item">
+
+
+                </li>
+            </ul>
+        </section>
+    </div>
+</body>
+
+</html> -->
+
+<!--<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Zoo Rescue Tracker</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: #f1fff0;
+            padding: 25px;
+            padding-top: 70px;
+            min-height: 1200px;
+        }
+
+        h1,
+        h2 {
+            color: #2d6a4f;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .alert {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #2d6a4f;
+            color: white;
+            padding: 14px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .animal {
+            background: #d8f3dc;
+            border: 2px solid #2d6a4f;
+            padding: 10px;
+            margin: 8px 0;
+            width: 220px;
+        }
+
+        .moved {
+            position: relative;
+            left: 35px;
+            background: #95d5b2;
+        }
+
+        .card {
+            position: relative;
+            background: white;
+            border: 2px solid #52b788;
+            border-radius: 10px;
+            padding: 25px;
+            width: 230px;
+            text-align: center;
+        }
+
+        .tag {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #f77f00;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .zone {
+            position: sticky;
+            top: 50px;
+            background: #2d6a4f;
+            color: white;
+            padding: 10px;
+            margin-top: 25px;
+            font-weight: bold;
+        }
+
+        .case {
+            background: white;
+            border: 2px solid #52b788;
+            padding: 10px;
+            margin: 8px 0;
+            width: 230px;
+            border-radius: 8px;
+        }
+
+        code {
+            background: #d8f3dc;
+            color: #1b4332;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="alert">Zoo Rescue Alert - Emergency team active | Fixed</div>
+
+    <h1>Zoo Rescue Tracker</h1>
+    <p style="text-align:center;">Learn CSS positioning by placing animal cards, rescue tags, and sticky zone labels.
+    </p>
+
+    <h2>Static Positioning</h2>
+    <p>Static is the default position. Animal entries appear one below another.</p>
+    <div class="animal">Lion - Resting zone</div>
+    <div class="animal">Elephant - Water zone</div>
+    <div class="animal">Penguin - Ice zone</div>
+
+    <h2>Relative Positioning</h2>
+    <p>The rescued animal entry moves slightly using <code>left: 35px</code>.</p>
+    <div class="animal">Giraffe - Checkup pending</div>
+    <div class="animal moved">Rescued Koala - Safe</div>
+    <div class="animal">Zebra - Feeding zone</div>
+
+    <h2>Absolute Positioning</h2>
+    <p>The rescue tag is placed on the animal card using absolute positioning.</p>
+    <div class="card">
+        Panda<br>
+        Medical check complete
+        <div class="tag">SAFE</div>
+    </div>
+
+    <h2>Fixed Positioning</h2>
+    <p>The green rescue alert at the top stays fixed even when you scroll.</p>
+
+    <h2>Sticky Positioning</h2>
+    <p>The rescue zone label sticks near the top while scrolling.</p>
+
+    <div class="zone">Rescue Zone Cases - Sticky</div>
+
+    <div class="case">Tiger - Observation</div>
+    <div class="case">Deer - Released</div>
+    <div class="case">Owl - Night care</div>
+    <div class="case">Turtle - Shell treatment</div>
+    <div class="case">Rabbit - Healthy</div>
+    <div class="case">Flamingo - Wing check</div>
+    <div class="case">Monkey - Play area</div>
+    <div class="case">Horse - Recovery stable</div>
+
+</body>
+
+</html>-->
+
+<!--<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoo Rescue Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- Base Styles & Reset --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+    padding-top: 70px; /* Prevents fixed header from overlapping content */
+}
+
+/* --- 1. FIXED POSITIONING --- */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #1b4332;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    z-index: 1000; /* Keeps header above all content */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.live-indicator {
+    background-color: #d90429;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: pulse 2s infinite;
+}
+
+/* --- 2. STICKY POSITIONING --- */
+.tracker-nav {
+    position: sticky;
+    top: 70px; /* Sticks directly below the fixed header */
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    z-index: 900;
+    box-shadow: 0 4px 6px -6px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #e9ecef;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.nav-btn.active {
+    background-color: #2d6a4f;
+    color: white;
+}
+
+/* --- Layout Grid --- */
+.dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* --- 3. RELATIVE & ABSOLUTE POSITIONING --- */
+.animal-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.image-container {
+    position: relative; /* Context anchor for absolute children */
+    width: 100%;
+    height: 200px;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Absolute child positioned inside Relative parent */
+.status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.status-badge.urgent { background-color: #d90429; }
+.status-badge.stable { background-color: #2d6a4f; }
+.status-badge.monitoring { background-color: #f77f00; }
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content h3 {
+    margin-bottom: 0.5rem;
+}
+
+/* --- 4. FIXED POSITIONING (Floating Action Button) --- */
+.fab-add-animal {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #2d6a4f;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+    z-index: 1000;
+}
+
+.fab-add-animal:hover {
+    transform: scale(1.1);
+}
+
+/* Keyframes */
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+    </style>
+</head>
+
+<body>
+
+     FIXED POSITIONING: Stays at the top of the viewport 
+<header class="main-header">
+    <h1>🐾 Zoo Rescue Tracker</h1>
+    <span class="live-indicator">Live Updates</span>
+</header>
+
+<main class="dashboard">
+
+    STICKY POSITIONING: Scrolls normally, then sticks under the header 
+    <nav class="tracker-nav">
+        <button class="nav-btn active">All Animals</button>
+        <button class="nav-btn">Enclosures</button>
+        <button class="nav-btn">Medical Bay</button>
+    </nav>
+
+    <section class="card-grid">
+
+        CARD 1: Demonstrating Absolute within Relative 
+        <div class="animal-card">
+            <div class="image-container">
+                <img src="https://unsplash.com" alt="Lion">
+                ABSOLUTE POSITIONING: Anchored to the relative image container 
+                <span class="status-badge urgent">Urgent Care</span>
+            </div>
+            <div class="card-content">
+                <h3>Simba</h3>
+                <p>Species: African Lion</p>
+                <p>Enclosure: Sector A7</p>
+            </div>
+        </div>
+
+        CARD 2 
+        <div class="animal-card">
+            <div class="image-container">
+                <img src="https://unsplash.com" alt="Elephant">
+                <span class="status-badge stable">Stable</span>
+            </div>
+            <div class="card-content">
+                <h3>Luna</h3>
+                <p>Species: Asian Elephant</p>
+                <p>Enclosure: Sector B2</p>
+            </div>
+        </div>
+
+        CARD 3 
+        <div class="animal-card">
+            <div class="image-container">
+                <img src="https://unsplash.com" alt="Deer">
+                <span class="status-badge monitoring">Monitoring</span>
+            </div>
+            <div class="card-content">
+                <h3>Bambi</h3>
+                <p>Species: Red Deer</p>
+                <p>Enclosure: Sector C1</p>
+            </div>
+        </div>
+
+    </section>
+</main>
+
+FLOATING ACTION BUTTON: Fixed to the bottom right 
+<button class="fab-add-animal" title="Report New Rescue">+</button>
+
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Zoo Rescue Tracker</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: cursive;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 70px;
+        }
+
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: #128c2d;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+        }
+
+
+        .live-indicator {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #d90429;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        /* --- 2. STICKY POSITIONING --- */
+        .tracker-nav {
+            position: sticky;
+            top: 70px;
+            /* Sticks directly below the fixed header */
+            background-color: #ffffff;
+            padding: 1rem 2rem;
+            z-index: 900;
+            box-shadow: 0 4px 6px -6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            padding: 0.5rem 1rem;
+            background: #e9ecef;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #333;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: #dee2e6;
+        }
+
+        .nav-btn.active {
+            background-color: #2d6a4f;
+            color: white;
+        }
+
+        /* --- Layout Structure --- */
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-section {
+            margin-bottom: 4rem;
+        }
+
+        .dashboard-section h2 {
+            color: #1b4332;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #2d6a4f;
+            padding-left: 10px;
+        }
+
+        /* Prevents sticky header from jumping on top of text when clicking links */
+        .target-padding {
+            scroll-margin-top: 140px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* --- 3. RELATIVE & ABSOLUTE POSITIONING --- */
+        .animal-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .image-container {
+            position: relative;
+            /* Context anchor zone for absolute children */
+            width: 100%;
+            height: 200px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Absolute child positioned inside Relative parent */
+        .status-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .status-badge.urgent {
+            background-color: #d90429;
+        }
+
+        .status-badge.stable {
+            background-color: #2d6a4f;
+        }
+
+        .status-badge.monitoring {
+            background-color: #f77f00;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- 4. FIXED POSITIONING (Floating Action Link) --- */
+        .fab-add-animal {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #2d6a4f;
+            color: white;
+            border-radius: 50%;
+            font-size: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+            z-index: 1000;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fab-add-animal:hover {
+            transform: scale(1.1);
+            background-color: #1b4332;
+        }
+
+        .placeholder-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 2px dashed #cbd5e1;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .mini-grid {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .zone {
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            flex: 1;
+            text-align: center;
+        }
+
+        .zone.alpha {
+            background: #ffe3e3;
+            color: #c92a2a;
+        }
+
+        .zone.beta {
+            background: #e6fcf5;
+            color: #0ca678;
+        }
+
+        .placeholder-box.medical {
+            border-left: 5px solid #f77f00;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.6;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <h1>🐾 Zoo Rescue Tracker</h1>
+        <span class="live-indicator">Live Updates</span>
+    </header>
+
+    <main class="dashboard">
+
+        <nav class="tracker-nav">
+            <a href="#all-animals" class="nav-btn active">All Animals</a>
+            <a href="#enclosures" class="nav-btn">Enclosures</a>
+            <a href="#medical-bay" class="nav-btn">Medical Bay</a>
+        </nav>
+
+        <section id="all-animals" class="dashboard-section">
+            <h2>Active Rescue Cases</h2>
+            <div class="card-grid">
+
+                <div class="animal-card">
+                    <div class="image-container">
+                        <img src="https://unsplash.com" alt="Lion">
+                        <span class="status-badge urgent">Urgent Care</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Simba</h3>
+                        <p>Species: African Lion</p>
+                        <p>Enclosure: Sector A7</p>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="image-container">
+                        <img src="https://unsplash.com" alt="Elephant">
+                        <span class="status-badge stable">Stable</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Luna</h3>
+                        <p>Species: Asian Elephant</p>
+                        <p>Enclosure: Sector B2</p>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="image-container">
+                        <img src="https://unsplash.com" alt="Deer">
+                        <span class="status-badge monitoring">Monitoring</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Bambi</h3>
+                        <p>Species: Red Deer</p>
+                        <p>Enclosure: Sector C1</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="enclosures" class="dashboard-section target-padding">
+            <h2>Enclosure Allocation Map</h2>
+            <div class="placeholder-box">
+                <p>📍 Interactive Habitat Grid Loading...</p>
+                <div class="mini-grid">
+                    <div class="zone alpha">Zone Alpha (Occupied)</div>
+                    <div class="zone beta">Zone Beta (Available)</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="medical-bay" class="dashboard-section target-padding">
+            <h2>Medical Treatment Logs</h2>
+            <div class="placeholder-box medical">
+                <p>📋 2 patients currently undergoing triage. Next update scheduled at 16:00 UTC.</p>
+            </div>
+        </section>
+    </main>
+
+    <a href="#report-rescue" class="fab-add-animal" title="Report New Rescue">+</a>
+
+</body>
+
+</html>

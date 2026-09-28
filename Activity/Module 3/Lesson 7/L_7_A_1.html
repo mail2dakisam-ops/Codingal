@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>My Cartoon Character Card</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #000000 0%, #c07e03 50%, #ecec38 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            color: #ffcc00;
+            font-size: 50px;
+            margin-bottom: 10px;
+            text-shadow: 15px 15px 15px rgb(1, 1, 1);
+            text-align: center;
+        }
+
+        p {
+            color: white;
+            line-height: 1.6;
+        }
+
+        h2 {
+            color: rgb(134, 139, 0);
+            font-size: 30px;
+            margin-bottom: 10px;
+            border-bottom: 5px dashed #00f2fe;
+            padding-bottom: 20px;
+            letter-spacing: 2px;
+
+        }
+
+        .subtitle {
+            color: #00f2fe;
+            font-weight: 900;
+            font-size: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+            ;
+            letter-spacing: 3px;
+            text-shadow: 1px 1px 10px rgba(0, 242, 254, 0.5);
+        }
+
+
+        #cartoon-card {
+            background-color: rgba(10, 10, 25, 0.85);
+            width: 100%;
+            padding: 30px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.7), 0px 10px 30px rgba(254, 131, 0, 0.635);
+            border: 3px solid #981111;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        #cartoon-card:hover {
+            transform: translateY(-10px) scale(1) translatex(5px);
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.8), 0px 20px 40px rgba(182, 236, 56, 0.692);
+            border-color: bisque;
+        }
+
+        .detail-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cartoon-detail {
+            background-color: #000000;
+            color: #00f2fe;
+            padding: 12px 15px;
+            font-weight: bold;
+            border-left: 5px dotted #e3ec38;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cartoon-detail span {
+            color: #ffffff;
+        }
+
+
+        .opinion {
+            background-color: rgba(10, 10, 25, 0.85);
+            width: 100%;
+            padding: 30px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.7), 0px 10px 30px rgba(254, 131, 0, 0.635);
+            border: 3px solid #981111;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .opinion:hover {
+            transform: translateY(-10px) scale(1);
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.8), 0px 20px 40px rgba(182, 236, 56, 0.692);
+            border-color: beige;
+        }
+
+        .opinion p {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .opinion p::before {
+            content: normal;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Cartoon Character Card</h1>
+    <p class="subtitle">Meet my apex-tier protagonist!</p>
+
+    <div id="cartoon-card">
+        <h2>About My Character</h2>
+        <div class="detail-group"><br>
+            <p class="cartoon-detail">Character Name: <span>Apex Zero</span></p>
+            <p class="cartoon-detail">Elite Role: <span>Interdimensional Bounty Hunter</span></p>
+            <p class="cartoon-detail">Signature Title: <span>The Void Wanderer</span></p>
+            <p class="cartoon-detail">Primary Duty: <span>Neutralizing Multiverse Rogue Paradoxes</span></p>
+        </div>
+    </div>
+
+    <div class="opinion">
+        <h2>Why I Like This Character</h2>
+        <p>Apex Zero is cold, calculated, yet deeply principled under pressure.</p>
+        <p>He effortlessly rewires failing starship cores and navigates black holes.</p>
+        <p>He teaches us how to adapt quickly when everything falls into chaos.</p>
+    </div>
+
+</body>
+
+</html>

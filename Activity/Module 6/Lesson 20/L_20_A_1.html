@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>    
+
+    <title>Multiplier</title>
+
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 36px;
+        }
+
+       .mul {
+            background-color: cornsilk;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 3px solid brown;
+            text-align: center;
+        }
+
+        h1 {
+            color: coral;
+            font-size: 50px;
+        }
+
+        #m {
+            background-color: greenyellow;
+            padding: 2px;
+            font-size: 45px;
+            color: brown;
+            font-size: 36px;
+            border: 2px solid black;
+        }
+
+        .qwerty {
+            display: flex;
+            flex-direction: column;
+            justify-content:flex-start
+        }
+        
+        input {
+            background-color:wheat;
+            text-align: center;
+            width: 100px;
+            height: 50px;
+        }
+        
+        #a, 
+        #b {
+            margin: 10px;
+            padding: 5px;
+            border: 0px;
+            height: 40px;
+            font-size: 36px;
+        }
+
+        #btn-reset {
+            background-color: red;
+            color: antiquewhite;
+            font-size: 36px;
+            border: 2px solid black;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+
+    <div class="mul">
+
+        <h1>Multiplier - The Multiplying Calculator</h1>
+
+        <p class="qwerty">Enter the first number: </p><input type="number" id="a">
+    
+        <p class="qwerty">Enter the second number: </p><input type="number" id="b"><br>
+    
+        <button onclick="multiply()" id="m">Multiply</button><br>  
+        
+        <button id="btn-reset" onclick="reset()">Reset</button><br>
+
+        <p id="result">Enter two numbers to find their product : </p>
+        
+        <script>
+
+    function multiply(n1, n2) {
+
+     var n1 = document.getElementById("a").value;
+
+     var n2 = document.getElementById("b").value;
+
+     var text1 = "The value of second number is undefined. <br> Kindly enter the value or it will automatically be considered as 1.<br>";
+
+     var text2 = "The value of first number is undefined. <br> Kindly enter the value or it will automatically be considered as 1.<br>";
+
+     var text3 = "The value of first and second numbers are undefined. <br> Kindly enter the values or it will automatically be considered as 1.<br>";
+    
+     var textr = "Enter two numbers to find their product : "
+
+     if (n1 === "" && n2 === "") {
+
+            n1 = 1;
+
+            n2 = 1;
+            
+            var math = n1 * n2;
+
+            document.getElementById("result").innerHTML = text3 + "Result : " + math;
+
+     }
+    
+     else { 
+
+            if (n2 === "") {
+
+                n1 = Number(n1)
+
+                n2 = 1; 
+
+                var math = n1 * n2;
+
+                document.getElementById("result").innerHTML = text1 + "Result : " + math;
+
+          }
+
+          else { 
+            
+            if (n1 === "") {
+            
+                n1 = 1;
+
+                n2 = Number(n2);
+
+                var math = n1 * n2;
+
+                document.getElementById("result").innerHTML = text2 + "Result : " + math;
+
+            }
+
+            else {
+
+                n1 = Number(n1);
+
+                n2 = Number(n2);
+
+                var math = n1 * n2;
+
+                document.getElementById("result").innerHTML = "Result : " + math;
+            }
+       
+        }
+         
+     }
+     
+ }
+
+    function reset() {    
+
+     document.getElementById("a").value = "";
+     
+     document.getElementById("b").value = "";
+    
+     document.getElementById("result").innerHTML = textr;
+    
+}
+
+</script>
+
+</body>
+
+</html>

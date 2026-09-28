@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Simple Calculator</title>
+
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 36px;
+        }
+
+        .cal {
+            background-color: cornsilk;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 3px solid brown;
+        }
+
+        h2 {
+            background-color: bisque;
+            color: goldenrod;
+            font-size: 80px;
+        }
+
+        input {
+            background-color:wheat;
+        }
+
+        #num1, 
+        #num2 {
+            margin: 10px;
+            padding: 5px;
+            border: 0px;
+            height: 40px;
+            font-size: 36px;
+        }
+
+        table {
+            margin: 10px;
+            padding: 10px;
+        }
+            
+        #btn-sub,
+        #btn-add,
+        #btn-mul,
+        #btn-div,
+        td {
+            background-color: greenyellow;
+            padding: 2px;
+            font-size: 45px;
+            color: brown;
+            font-size: 36px;
+            height: 40px;
+            width: 40px;
+            border: none;
+        }
+
+       td{
+        border: 2px solid black;
+       }
+
+        #btn-reset {
+            background-color: red;
+            color: antiquewhite;
+            font-size: 36px;
+            border: 2px solid black;
+        }
+
+        h3 {
+            background-color: azure;
+            color: chocolate;
+            font-size: 50px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="cal">
+
+        <h2>Simple Calculator</h2>
+
+        Enter the first number: <input type="number" id="num1">
+
+        Enter the second number: <input type="number" id="num2">
+
+        <table>
+
+            <tr> 
+
+                <td> <button id="btn-add">+</button> </td> 
+
+                <td> <button id="btn-sub">-</button> </td>
+
+                <td> <button id="btn-mul">*</button> </td> 
+
+                <td> <button id="btn-div">/</button> </td> 
+            
+            </tr>            
+
+        </table>
+
+    <button id="btn-reset">Reset</button>
+
+    <h3 id="result">Result: </h3>
+
+    <script>
+   
+   document.getElementById("btn-add").onclick = function() {
+
+        var a = Number(document.getElementById("num1").value);
+    
+        var b = Number(document.getElementById("num2").value);
+    
+        var resa = a + b;
+    
+        document.getElementById("result").innerText = "Result: " + resa;
+    
+    };
+      
+    document.getElementById("btn-sub").onclick = function() {
+    
+        var a = Number(document.getElementById("num1").value);
+    
+        var b = Number(document.getElementById("num2").value);
+    
+        var ress = a - b;
+    
+        document.getElementById("result").innerText = "Result: " + ress;
+    
+    };
+
+    document.getElementById("btn-mul").onclick = function() {
+
+        var a = Number(document.getElementById("num1").value);
+
+        var b = Number(document.getElementById("num2").value);
+
+        var resm = a * b;
+
+        document.getElementById("result").innerText = "Result: " + resm;
+
+    };
+
+    document.getElementById("btn-div").onclick = function() {
+
+        var a = Number(document.getElementById("num1").value);
+
+        var b = Number(document.getElementById("num2").value);
+
+        var resd = a / b;
+
+        document.getElementById("result").innerText = "Result: " + resd;
+
+    };
+      
+    document.getElementById("btn-reset").onclick = function() {
+    
+        document.getElementById("num1").value = "";
+    
+        document.getElementById("num2").value = "";
+    
+        document.getElementById("result").innerText = "Result: ";
+    
+    };
+
+    </script>
+
+    </div>
+</body>
+
+</html>

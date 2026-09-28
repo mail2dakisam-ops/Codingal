@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ice Cream Shop Menu</title>
+    <style>
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            background-color: #fff9f0;
+            color: #4a3728;
+            margin: 5;
+            padding: 50px;
+            line-height: 1.6rem;
+        }
+
+        header h1 {
+            text-align: center;
+            color: #ff6b81;
+            font-size: 2.5rem;
+        }
+
+        .menu-container {
+            margin: auto;
+        }
+
+
+        .intro-text::first-letter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff4757;
+        }
+
+        .menu-section h2 {
+            color: #2ed573;
+            border-bottom: 2px dashed #2ed573;
+            padding-bottom: 5px;
+        }
+
+        .menu-grid>.menu-item {
+            background: white;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .menu-item h3+.description {
+            margin-top: 8px;
+            color: #747d8c;
+        }
+
+        .menu-item.special-flavour {
+            background: linear-gradient(135deg, #ffeaa7 0%, #ff9ff3 100%);
+            border: 2px solid #ff6b81;
+        }
+
+        .special-flavour h3 {
+            color: #d63031;
+        }
+
+        .special-flavour .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4757;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(255, 107, 129, 0.2);
+        }
+
+        .menu-item .price {
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #ff6b81;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>&#x1F366; Scoop & Smile Ice Cream Parlor &#x1F368;</h1>
+    </header>
+
+    <main class="menu-container">
+        <p class="intro-text">Welcome to our shop! We craft the most colorful, delicious ice creams in town using 100%
+            organic ingredients. Come try our daily specials!</p>
+
+        <section class="menu-section">
+            <h2>Our Flavours</h2>
+
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h3>Classic Vanilla</h3>
+                    <p class="description">Creamy, rich Madagascan vanilla bean base.</p>
+                    <span class="price">$4.50</span>
+                </div>
+
+                <div class="menu-item">
+                    <h3>Double Chocolate</h3>
+                    <p class="description">Deep, Belgian dark chocolate swirl with chips.</p>
+                    <span class="price">$4.99</span>
+                </div>
+
+                <div class="menu-item special-flavour">
+                    <span class="badge">Chef's Special</span>
+                    <h3>Unicorn Dream</h3>
+                    <p class="description">A vibrant swirling fusion of cotton candy, strawberry, and edible glitter!
+                    </p>
+                    <span class="price">$5.50</span>
+                </div>
+
+                <div class="menu-item">
+                    <h3>Mint Chocolate Chip</h3>
+                    <p class="description">Cool peppermint packed with organic fudge flakes.</p>
+                    <span class="price">$4.75</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>

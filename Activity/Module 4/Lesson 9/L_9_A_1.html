@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Tasty Treat — Menu</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(to bottom right, #99c211, #07dda4);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-wrap {
+            background: linear-gradient(180deg, #ffffffcc, #ffffffdd);
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        .restaurant-name {
+            font-family: "Georgia", serif;
+            font-size: 36px;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            color: #7b8a92;
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 5fr 5fr;
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .menu-section {
+            background: linear-gradient(180deg, #a1f1d5, #f6fbff);
+            padding: 14px;
+            border-radius: 10px;
+        }
+
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .dish {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 6px;
+            align-items: center;
+            border-radius: 8px;
+            transition: transform .18s ease,
+                box-shadow .18s ease, background .18s ease;
+        }
+
+        .dish:hover {
+            transform: translateY(-6px);
+        }
+
+        .dish-name {
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dish-desc {
+            color: #7b8a92;
+            font-size: 13px;
+            margin-top: 6px;
+            line-height: 1.35;
+        }
+
+        .price {
+            color: #ffbf59;
+            font-weight: 800;
+        }
+
+        .dish-emoji {
+            display: inline-block;
+            font-size: 18px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-6px)
+            }
+
+            100% {
+                transform: translateY(0)
+            }
+        }
+
+
+
+        .special {
+            background: linear-gradient(90deg, #ffbf59, #ff8a59);
+            color: #041017;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            box-shadow: 0 8px 18px rgba(255, 140, 60, 0.12);
+            text-align: center;
+        }
+
+        .special:hover {
+            transform: translateX(0px) scale(1.03);
+        }
+
+        .notes {
+            color: #7b8a92;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu-wrap">
+        <header>
+            <div class="restaurant-name">Tasty Treat Cafe</div>
+            <div class="tagline">Fresh food, happy mood!</div>
+        </header>
+
+        <div class="menu-grid">
+            <section class="menu-section">
+                <div class="section-title">Starters</div>
+
+                <div class="dish">
+                    <div class="">
+                        <div class="dish-name"><span class="dish-emoji">&#x1F9C0;</span> Cheesy Garlic Bread</div>
+                        <div class="dish-desc">Crispy bread with garlic butter and melted cheese.</div>
+                    </div>
+                    <div class="price">$4.50</div>
+                </div>
+
+                <div class="dish">
+                    <div class="">
+                        <div class="dish-name"><span class="dish-emoji">&#x1F33D;</span> Spicy Corn Bites</div>
+                        <div class="dish-desc">Crunchy corn bites served with a tangy dip.</div>
+                    </div>
+                    <div class="price">$3.75</div>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <div class="section-title">Main Course</div>
+
+                <div class="dish">
+                    <div>
+                        <div class="dish-name"><span class="dish-emoji">&#x1F35D;</span> Creamy Pasta Bowl</div>
+                        <div class="dish-desc">Pasta in a smooth cream sauce with fresh veggies.</div>
+                    </div>
+                    <div class="price">$9.50</div>
+                </div>
+
+                <div class="dish">
+                    <div>
+                        <div class="dish-name"><span class="dish-emoji">&#x1F355;</span> Veggie Pizza</div>
+                        <div class="dish-desc">A colourful pizza loaded with fresh vegetables and cheese.</div>
+                    </div>
+                    <div class="price">$11.00</div>
+                </div>
+            </section>
+        </div><br><br>
+
+
+        <div class="notes">Gluten-free & vegetarian options available • Call to order</div><br>
+        <div class="special">Weekend special: 20% off!
+        </div>
+    </div>
+</body>
+
+</html>

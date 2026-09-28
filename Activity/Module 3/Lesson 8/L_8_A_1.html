@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather Dashboard App</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            background-color: #0f172a;
+            background-image: linear-gradient(to bottom right, #06096f, #000000);
+            background-size: cover;
+            background-repeat: no-repeat;
+
+        }
+
+        .main-heading {
+            color: #ffffff;
+            font-size: 70px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .weather-card {
+            background: linear-gradient(to bottom right, #05bbed, #0800ff);
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 50px;
+        }
+
+        .location {
+            font-size: 70px;
+            font-weight: 600;
+        }
+
+        .condition {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        .w-icon {
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .day-icon {
+            font-size: 20px;
+            animation: floatIcon 2s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0% {
+                transform: translateY(0px) scale(1.5);
+            }
+
+            50% {
+                transform: translateY(0px) scale(2);
+            }
+
+            100% {
+                transform: translateY(0px) scale(1.5);
+            }
+        }
+
+        .day-icon-m {
+            font-size: 50px;
+            animation: floatIcon1 2s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon1 {
+            0% {
+                transform: translateY(0px) scale(1.5);
+            }
+
+            50% {
+                transform: translateY(0px) scale(2);
+            }
+
+            100% {
+                transform: translateY(0px) scale(1.5);
+            }
+        }
+
+        .temperature {
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        .forecast-section {
+            background: linear-gradient(to top left, #1e293b, #0f172a);
+            border-radius: 25px;
+            padding: 25px;
+            color: #ffffff;
+        }
+
+        .forecast-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #94a3b8;
+        }
+
+        .forecast-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .forecast-day {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .day-name {
+            font-weight: 500;
+            width: 80px;
+        }
+
+        .day-temp {
+            font-weight: 600;
+            text-align: right;
+            width: 70px;
+            color: #cbd5e1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="main-heading">Weather Dashboard</h1>
+
+    <div class="dashboard">
+
+        <div class="weather-card">
+            <p class="location">Chennai</p>
+            <p class="condition">Partly Cloudy</p>
+            <div class="w-icon">
+                <span class="day-icon-m">&#9925;</span>
+            </div>
+            <h2 class="temperature">72&degF</h2>
+        </div>
+
+        <div class="forecast-section">
+            <h3 class="forecast-title">5-Day Forecast</h3>
+            <div class="forecast-list">
+                <div class="forecast-day">
+                    <span class="day-name">Mon</span>
+                    <span class="day-icon">&#9728;&#65039;</span>
+                    <span class="day-temp">75&degF / 58&degF</span>
+                </div>
+                <div class="forecast-day">
+                    <span class="day-name">Tue</span>
+                    <span class="day-icon">&#9925;</span>
+                    <span class="day-temp">72&degF / 57&degF</span>
+                </div>
+                <div class="forecast-day">
+                    <span class="day-name">Wed</span>
+                    <span class="day-icon">&#9729;&#65039;</span>
+                    <span class="day-temp">68&degF / 55&degF</span>
+                </div>
+                <div class="forecast-day">
+                    <span class="day-name">Thu</span>
+                    <span class="day-icon">&#127783;&#65039;</span>
+                    <span class="day-temp">64&degF / 52&degF</span>
+                </div>
+                <div class="forecast-day">
+                    <span class="day-name">Fri</span>
+                    <span class="day-icon">&#9925;</span>
+                    <span class="day-temp">70&degF / 54&degF</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
